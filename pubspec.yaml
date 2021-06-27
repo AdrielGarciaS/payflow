@@ -30,6 +30,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^2.1.0
 
+  # Add the dependencies for any other Firebase products you want to use in your app
+  # For example, to use Firebase Authentication and Cloud Firestore
+  cloud_firestore: ^1.0.5
+  firebase_auth: ^1.1.0
+  firebase_storage: ^8.0.3
+  firebase_analytics: ^8.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

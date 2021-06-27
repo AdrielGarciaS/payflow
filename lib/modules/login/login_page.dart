@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
 import 'package:payflow/shared/themes/app_images.dart';
 import 'package:payflow/shared/themes/app_text_style.dart';
 import 'package:payflow/shared/widgets/social_login/social_login_button.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({ Key? key }) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -24,20 +25,18 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: [
             Container(
-              width: screenSize.width,
-              height: screenSize.height * 0.36,
-              color: AppColors.primary
-            ),
+                width: screenSize.width,
+                height: screenSize.height * 0.36,
+                color: AppColors.primary),
             Positioned(
-              left: 0,
-              right: 0,
-              top: 40,
-              child: Image.asset(
-                AppImages.person,
-                width: 208,
-                height: 373,
-              )
-            ),
+                left: 0,
+                right: 0,
+                top: 40,
+                child: Image.asset(
+                  AppImages.person,
+                  width: 208,
+                  height: 373,
+                )),
             Positioned(
               bottom: screenSize.height * 0.09,
               left: 0,
@@ -48,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Image.asset(AppImages.logomini),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 70, right: 70),
+                    padding:
+                        const EdgeInsets.only(top: 30, left: 70, right: 70),
                     child: Text(
                       "Organize seus boletos em um só lugar",
                       style: TextStyles.titleHome,
@@ -56,10 +56,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+                    padding:
+                        const EdgeInsets.only(left: 40, right: 40, top: 40),
                     child: SocialLoginButton(
-                      onTap: () {
-                        print("clicou");
+                      onTap: () async {
+                        GoogleSignIn _googleSignIn = GoogleSignIn(
+                          scopes: ['email'],
+                        );
+
+                        try {
+                          final response = await _googleSignIn.signIn();
+                          print(response);
+                        } catch (error) {
+                          print(error);
+                        }
                       },
                     ),
                   ),
